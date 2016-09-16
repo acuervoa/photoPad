@@ -3,16 +3,41 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>App</title>
-	<link rel="stylesheet" href="app.css">
+	<title>Photo Pad</title>
+	<link rel="stylesheet" href="photoPad.css">
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
-	<script src="app.js" type="text/javascript" charset="utf-8" async defer></script>
+	<script src="toolbar.js" type="text/javascript" charset="utf-8"></script>
+	<script src="photoPad.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
 	<div id="app">
-		<header>App</header>
-		<div id="main"></div>
-		<footer></footer>
+		<header>Photo Pad</header>
+		<div id="main">
+			<div id="toolbar">
+				<div class="dropdown-menu">
+					<button data-action="menu">Load</button>
+					<ul id="load-menu" data-option="file-picker" class="file-picker menu">
+						<li data-value="file-picker">
+							<input type="file"/>
+						</li>
+					</ul>
+				</div>
+				<button data-action="save">Save</button>
+				<div class="dropdown-menu">
+					<button data-action="menu">Effects</button>
+					<ul data-option="applyEffect" class="menu">
+						<li data-value="invert">Invert</li>
+					</ul>
+				</div>
+			</div>
+			<canvas width="0" height="0">
+			Sorry, your browser doesn't support canvas.
+			</canvas>
+		</div>
+		
+		<footer>
+			Click load to choose a file
+		</footer>
 	</div>
 
 </body>
