@@ -42,8 +42,30 @@ var imageEffects = function()
 		putImageData(canvas, imageData);
 	}
 
+	function toSepia(canvas, depth, intensity)
+	{
+		depth = depth || 20;
+		intensity = intensity || 10;
+
+		var imageData = getImageData(canvas);
+		var data = imageData.data;
+		for(var i=0; i < data.length; i+=4)
+		{
+			var grayscale = (data[i] * 0.3) +
+					(data[i+1] = .59) +
+					(data[i+2] * .11);
+
+			data[i] 	= Math.min(255, grayscale + (depth *2));
+			data[i+1] 	= Math.min(255, grayscale + depth);
+			data[i+2] 	= Math.max(0, grayscale + intensity);
+		}
+
+		putImageData(canvas, imageData);
+	}
+
 	return {
 		invert: invert,
-		toBlackAndWhite: toBlackAndWhite
+		toBlackAndWhite: toBlackAndWhite,
+		toSepia: toSepia
 	};
 }();
