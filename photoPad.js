@@ -7,6 +7,7 @@ function PhotoPadApp()
 		context = canvas.getContext("2d"),
 		$img = $("<img>"),
 		toolbar = new Toolbar($("#toolbar"));
+		//imageEffects = new imageEffects();
 
 	function setStatus(message) {
 
@@ -30,12 +31,11 @@ function PhotoPadApp()
 		}
 
 		toolbar.toolbarButtonClicked = toolbarButtonClicked;
+		toolbar.menuItemClicked = menuItemClicked;
 	}
 
 	function toolbarButtonClicked(action)
 	{	
-
-		console.log(action);
 		switch(action)
 		{
 			case "save":
@@ -76,6 +76,14 @@ function PhotoPadApp()
 		$img[0].onerror = function()
 		{
 			setStatus("Error loading image!");
+		}
+	}
+
+	function menuItemClicked(option, value)
+	{
+		if(option == "applyEffect")
+		{
+			imageEffects[value](canvas);
 		}
 	}
 }
