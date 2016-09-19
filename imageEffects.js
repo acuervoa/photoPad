@@ -95,10 +95,42 @@ var imageEffects = function()
 		putImageData(canvas, newImageData);
 	}
 
+	function lightness(canvas)
+	{
+		var imageData = getImageData(canvas);
+		var data = imageData.data;
+		for (var i = 0; i < data.length; i +=4)
+		{
+			data[i]		= data[i] + (data[i] * .5);	//red
+			data[i+1]	= data[i+1] + (data[i+1] * .5);	//green
+			data[i+2]	= data[i+2] + (data[i+2] * .5);	//blue
+			//data[i+3] is alpha
+		}
+
+		putImageData(canvas, imageData);
+	}
+
+	function darkness(canvas)
+	{
+		var imageData = getImageData(canvas);
+		var data = imageData.data;
+		for (var i = 0; i < data.length; i +=4)
+		{
+			data[i]		= data[i] * .5;	//red
+			data[i+1]	= data[i+1] * .5;	//green
+			data[i+2]	= data[i+2] * .5;	//blue
+			//data[i+3] is alpha
+		}
+
+		putImageData(canvas, imageData);
+	}
+
 	return {
 		invert: invert,
 		toBlackAndWhite: toBlackAndWhite,
 		toSepia: toSepia,
-		makeWaves: makeWaves
+		makeWaves: makeWaves,
+		lightness: lightness,
+		darkness: darkness
 	};
 }();
